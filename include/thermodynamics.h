@@ -229,6 +229,7 @@ double * reio_inter_xe; /**< discrete \f$ X_e(z)\f$ values */
   double annihilation; /** parameter describing CDM annihilation (f <sigma*v> / m_cdm, see e.g. 0905.0003) */
   double annihilation_cross_section;
   double DM_mass;
+  double photon_energy;
   double annihilation_variation; /** if this parameter is non-zero,
 				     the function F(z)=(f <sigma*v> /
 				     m_cdm)(z) will be a parabola in
@@ -488,7 +489,7 @@ struct recombination {
   double annihilation_m_DM; /**< in case of alternative parameterization to annihilation parameter, describes the mass of the dark matter */
 
   short has_on_the_spot; /**< flag to specify if we want to use the on-the-spot approximation **/
-
+  double photon_energy; /*MD fraction of energy passed onto photon in SWIMP decay*/
   double decay_fraction; /**< parameter describing CDM decay (f/tau, see e.g. 1109.6322)*/
   double PBH_accreting_mass; /**< mass from the PBH, in case of Dark Matter being PBH */
   double PBH_ADAF_delta; /**<Specific to ADAF_Simulation accretion recipe. Determines the heating of the electrons in the disk, influencing the emissivity. Can be set to 0.5 (aggressive scenario) or 1e-3 (conservative). From Fie and Yuan 2012. */

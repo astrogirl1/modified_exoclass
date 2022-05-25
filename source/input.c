@@ -793,6 +793,14 @@ int input_read_parameters(
     if (flag2 == _TRUE_)
       pba->Omega_ini_dcdm = param2/pba->h/pba->h;
   }
+  /*Read photon_energy*/
+  class_call(parser_read_double(pfc,"photon_energy",&param1,&flag1,errmsg),
+             errmsg,
+             errmsg);
+  if(flag1=_TRUE_){
+    pth->photon_energy = param1;
+    printf("This reads photon_energy %g \n", pth->photon_energy);
+  }
   /* Read Gamma in same units as H0, i.e. km/(s Mpc)*/
   class_call(parser_read_double(pfc,"Gamma_dcdm",&param1,&flag1,errmsg),
              errmsg,
@@ -1783,6 +1791,9 @@ int input_read_parameters(
             "When using DarkAges for decaying dark matter you need to specify the mass, such that the right refernce spectrum can be taken. Please revise your input and include an entry for 'DM_mass'");
           strcat(ppr->command_fz," --mass=");
           sprintf(string2,"%g",pth->DM_mass);
+          strcat(ppr->command_fz,string2);
+          strcat(ppr->command_fz," --photon_energy=");
+          sprintf(string2,"%g",pth->photon_energy);
           strcat(ppr->command_fz,string2);
           strcat(ppr->command_fz," --branching ");
           sprintf(string2,"");
@@ -3590,6 +3601,7 @@ int input_default_params(
   //MZ: initial conditions are as multiplicative factors of the radiation attractor values
   pba->phi_ini_scf = 1;
   pba->phi_prime_ini_scf = 1;
+  pth->photon_energy = 0;
 
   pba->Omega0_k = 0.;
   pba->K = 0.;

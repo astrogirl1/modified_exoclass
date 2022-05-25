@@ -206,7 +206,7 @@ class annihilating_halos_model(model):
 		if norm_by == 'energy_integral':
 			from .common import trapz, logConversion
 			E = logConversion(logEnergies)
-			if len(E) > 1:
+			if len(E) >= 1:
 				normalization = trapz(tot_spec*E**2*np.log(10), logEnergies)*np.ones_like(redshift)
 			else:
 				normalization = (tot_spec*E)[0]
@@ -282,7 +282,7 @@ class decaying_model(model):
 		if norm_by == 'energy_integral':
 			from .common import trapz, logConversion
 			E = logConversion(logEnergies)
-			if len(E) > 1:
+			if len(E)>1:
 				normalization = trapz(tot_spec*E**2*np.log(10), logEnergies)*np.ones_like(redshift)
 			else:
 				normalization = (tot_spec*E)[0]

@@ -2,7 +2,7 @@ import os
 import subprocess
 import pandas as pd
 
-input_file = "/home/a1705053/Desktop/gamma.ini"
+input_file = "/home/a1705053/Dropbox/Masters/Codes_Uni/2022_code_tests/gamma.ini"
 
 # with open(input_file, "r") as file_in:
 file = pd.read_csv(input_file, names=["gamma", "decay"])

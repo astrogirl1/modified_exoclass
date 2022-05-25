@@ -4469,6 +4469,7 @@ int fill_recombination_structure(struct precision * ppr,
   preco->energy_deposition_function = pth->energy_deposition_function;
   preco->PBH_evaporating_mass = pth->PBH_evaporating_mass;
   preco->PBH_fraction = pth->PBH_fraction;
+  preco->photon_energy = pth->photon_energy;
 
   preco->PBH_table_is_initialized = pth->PBH_table_is_initialized;
   preco->PBH_table_z = pth->PBH_table_z;
