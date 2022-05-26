@@ -24,6 +24,7 @@ for the most common energy injection histories.
 
 from __future__ import absolute_import, division, print_function
 from builtins import range, object
+import sys
 
 from .transfer import transfer
 from .common import f_function
@@ -202,7 +203,11 @@ class annihilating_halos_model(model):
 
 		tot_spec = ref_el_spec + ref_ph_spec + ref_oth_spec
 
+		
+
 		norm_by = DarkOptions.get('normalize_spectrum_by','energy_integral')
+		# norm_by = DarkOptions.get('normalize_spectrum_by','mass')
+		
 		if norm_by == 'energy_integral':
 			from .common import trapz, logConversion
 			E = logConversion(logEnergies)
@@ -229,7 +234,7 @@ class decaying_model(model):
 	Inherits all methods of :class:`model <DarkAges.model.model>`
 	"""
 
-	def __init__(self,ref_el_spec,ref_ph_spec,ref_oth_spec,m,t_dec,logEnergies=None,redshift=None, **DarkOptions):
+	def __init__(self,ref_el_spec,ref_ph_spec,ref_oth_spec,m,pe,t_dec,logEnergies=None,redshift=None, **DarkOptions):
 		u"""At initialization the reference spectra are read and the double-differential
 		spectrum :math:`\\frac{\\mathrm{d}^2 N(t,E)}{\\mathrm{d}E\\mathrm{d}t}` needed for
 		the initialization inherited from :class:`model <DarkAges.model.model>` is calculated by
@@ -278,7 +283,7 @@ class decaying_model(model):
 
 		tot_spec = ref_el_spec + ref_ph_spec + ref_oth_spec
 
-		norm_by = DarkOptions.get('normalize_spectrum_by','energy_integral')
+		norm_by = DarkOptions.get('normalize_spectrum_by','mass')
 		if norm_by == 'energy_integral':
 			from .common import trapz, logConversion
 			E = logConversion(logEnergies)
@@ -287,7 +292,8 @@ class decaying_model(model):
 			else:
 				normalization = (tot_spec*E)[0]
 		elif norm_by == 'mass':
-			normalization = np.ones_like(redshift)*(m)
+			normalization = np.ones_like(redshift)*(pe)
+			sys.stderr.write("photon_energy is %.10g \n" %pe)
 		else:
 			raise DarkAgesError('I did not understand your input of "normalize_spectrum_by" ( = {:s}). Please choose either "mass" or "energy_integral"'.format(norm_by))
 

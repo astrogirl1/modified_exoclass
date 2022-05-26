@@ -799,7 +799,7 @@ int input_read_parameters(
              errmsg);
   if(flag1=_TRUE_){
     pth->photon_energy = param1;
-    printf("This reads photon_energy %g \n", pth->photon_energy);
+    // printf("This reads photon_energy %g \n", pth->photon_energy);
   }
   /* Read Gamma in same units as H0, i.e. km/(s Mpc)*/
   class_call(parser_read_double(pfc,"Gamma_dcdm",&param1,&flag1,errmsg),
