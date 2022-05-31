@@ -85,7 +85,7 @@ parser.add_option("--nuke-and-start-again", action='store_true', dest='nuke', de
 parser.add_option("--return_f_eff_table", action='store_true', dest='return_feff', default=False,
                   help="Print f(z) summed over all deposition channels (with corrections) instead of each channel")
 parser.add_option("--photon_energy", type='float', dest='photon_energy',
-                  help="Define the fraction of energy passsed to the photon (product of SWIMP_DM_decay).")		  
+                  help="Define the energy of the photon (product of SWIMP_DM_decay).")		  
 
 (options, args) = parser.parse_args()
 if len(args) == 0:
